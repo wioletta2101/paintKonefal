@@ -9,8 +9,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
 
     ArrayList<Figura> lista;
     int x2,y2;
-    boolean linia = FALSE;
-    //Linia temp linia;
+    //boolean linia = FALSE;
+    Linia linia;
     
     
     
@@ -48,6 +48,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
       z=e.getX();
       p=e.getY();
       repaint();
+      linia=null;
      
      System.out.println("mouseReleased");
  }
@@ -96,7 +97,9 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
  }
   public void mouseDragged (MouseEvent e)
  {
-      lista.add(new Linia(e.getX(), e.getY(), e.getX(), e.getY()));
+     lista.remove(linia);
+     linia = new Linia(x, y, e.getX(), e.getY());
+      lista.add(linia);
       repaint();
  }
  
