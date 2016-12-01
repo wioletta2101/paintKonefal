@@ -12,20 +12,24 @@ public class Linia implements Figura
 {
     private int x=-1;
     private int y=-1;
+    private int z=-1;
+    private int p=-1;
     
-     public Linia( int q, int w)
+     public Linia( int q, int w, int e, int t)
     {
         this.x = q;
         this.y = w;
+        this.z = e;
+        this.p = t;
     }
      
     public void paint(Graphics g)
     {
 
-       // rysowanie kolka
-       g.setColor(Color.RED);
-       if(x!=-1 && y!=-1)
-       g.drawOval(x-25, y-25, 50, 50);
-
+        //     //rysowanie linii
+      g.setColor(Color.RED);
+      if(x!=-1 && y!=-1)
+      g.drawLine(x, y, z, p);
+     
    }
 }

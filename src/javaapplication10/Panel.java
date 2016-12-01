@@ -2,9 +2,18 @@
 package javaapplication10;
 import java.awt.*;
 import java.awt.event.*;
+import static java.lang.Boolean.FALSE;
+import java.util.ArrayList;
 import javax.swing.*;
 public class Panel extends JPanel implements MouseListener, MouseMotionListener{
 
+    ArrayList<Figura> lista;
+    int x2,y2;
+    boolean linia = FALSE;
+    //Linia temp linia;
+    
+    
+    
     private int x=-1;
     private int y=-1;
     private int z=-1;
@@ -14,6 +23,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
  {
     addMouseListener(this);
     addMouseMotionListener(this);
+    lista = new ArrayList<Figura>();
+   
 
  }
  public void mouseExited(MouseEvent e)
@@ -34,7 +45,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
  }
  public void mouseReleased(MouseEvent e)
  {
-     z=e.getX();
+      z=e.getX();
       p=e.getY();
       repaint();
      
@@ -44,6 +55,12 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
  public void mouseClicked(MouseEvent e)
  {
      
+//      lista.add(new Linia(e.getX(), e.getY(), e.getX(), e.getY()));
+//      repaint();
+     
+     
+//     lista.add(new Kolo(e.getX(), e.getY()));
+//     repaint();
 //     x=e.getX();
 //     y=e.getY();
 //     repaint(); 
@@ -54,16 +71,19 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
  
  public void paint(Graphics g)
  {
-     //rysowanie kolka
-//    g.setColor(Color.RED);
-//    if(x!=-1 && y!=-1)
-//    g.clearRect(0, 0, getSize().width, getSize().height);
-//    g.drawOval(x-25, y-25, 50, 50);
-     
-     //rysowanie linii
-     g.setColor(Color.RED);
-     if(x!=-1 && y!=-1)
-     g.drawLine(x, y, z, p);
+     g.clearRect(0, 0, getSize().width, getSize().height);
+     for(Figura figura :lista)
+         figura.paint(g);
+//     //rysowanie kolka
+////    g.setColor(Color.RED);
+////    if(x!=-1 && y!=-1)
+////    g.clearRect(0, 0, getSize().width, getSize().height);
+////    g.drawOval(x-25, y-25, 50, 50);
+//     
+//     //rysowanie linii
+//     g.setColor(Color.RED);
+//     if(x!=-1 && y!=-1)
+//     g.drawLine(x, y, z, p);
      
  }
  
@@ -76,7 +96,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener{
  }
   public void mouseDragged (MouseEvent e)
  {
-      
+      lista.add(new Linia(e.getX(), e.getY(), e.getX(), e.getY()));
+      repaint();
  }
  
  
